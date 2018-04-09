@@ -1,4 +1,4 @@
-package com.kkd.model;
+package com.kkd.customerregisterservice.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomerDaoService {
   
-  private static List<Customer> users = new ArrayList<>();
+  private static List<Customer> users = new ArrayList<Customer>();
 
   private static int usersCount = 1;
 
   static {
-    users.add(new Customer(1, "Adam","123","1234", "678"));
+    users.add(new Customer(1,"KKDCUST00_1", "Adam","123","1234", "678"));
     
   }
 
@@ -25,7 +25,7 @@ public class CustomerDaoService {
     if (user.getCustomerId()==0) {
       user.setCustomerId(++usersCount);
     }
-    user.setCustomerId(user.getCustomerId()+"_KKD");
+    user.setId("KKDCUST00_"+user.getCustomerId());
     users.add(user);
     return user;
   }

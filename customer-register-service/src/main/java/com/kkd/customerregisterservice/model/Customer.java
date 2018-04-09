@@ -1,4 +1,4 @@
-package com.kkd.model;
+package com.kkd.customerregisterservice.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ public class Customer {
   @Id
   @GeneratedValue
   private int customerId;
+  private String id;
   
   private String mobileNo;
   private String password;
@@ -19,14 +20,25 @@ public class Customer {
   protected Customer() {
   }
   
-  public Customer(int i, String string, String string2, String string3, String string4) {
+  public Customer(int i,String id, String string, String string2, String string3, String string4) {
     // TODO Auto-generated constructor stub
     super();
+    this.id=id;
     this.customerId=i;
     this.mobileNo=string;
     this.password=string2;
     this.firstName=string3;
     this.lastName=string4;
+  }
+
+  
+  
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
   }
 
   public int getCustomerId() {
@@ -62,15 +74,11 @@ public class Customer {
 
   @Override
   public String toString() {
-    return "Customer [customerId=" + customerId + ", mobileNo=" + mobileNo + ", password=" + password + ", firstName="
+    return "Customer [customerId=" + customerId + ",Id=" + id + ", mobileNo=" + mobileNo + ", password=" + password + ", firstName="
         + firstName + ", lastName=" + lastName + "]";
   }
 
-  public void setCustomerId(String string) {
-    // TODO Auto-generated method stub
-    this.customerId = customerId;
-    
-  }
+  
 
 
 
