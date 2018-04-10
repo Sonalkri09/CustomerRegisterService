@@ -17,18 +17,7 @@ public class CustomerRegisterController {
   
   @Autowired
   private CustomerDaoService users;
-  
-  /*@GetMapping("/customer")
-  public Customer firstpage() {
-    //Customer user= new Customer();
-    user.setCustomerId();
-    user.setMobileNo("123");
-    user.setPassword("456");
-    user.setFirstName("sonal");
-    user.setLastName("kri");
-     return user;
-  }*/
-  
+ 
   @GetMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Customer> retrieveAllUsers() {
     return users.findAll();

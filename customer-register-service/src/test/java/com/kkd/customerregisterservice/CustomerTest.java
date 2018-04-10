@@ -42,9 +42,6 @@ public class CustomerTest {
     
   }
 
-  
-
-  
   @Test
   public void viewProductsTest(){
     
@@ -62,13 +59,10 @@ public class CustomerTest {
     String expected =  "[{\"customerId\":1,\"id\":\"1_KKD\",\"mobileNo\":\"Adam\",\"password\":\"123\",\"firstName\":\"1234\",\"lastName\":\"678\"}]";
 
 
-    // {"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
-
     JSONAssert.assertEquals(expected, result.getResponse()
         .getContentAsString(), false);
     
-    
-  }
+    }
     catch (Exception e) {
       System.out.println(e.getMessage());
     }
@@ -82,7 +76,34 @@ public class CustomerTest {
     customers.add(customer);
     Mockito.when(
         customerDaoService.findAll()).thenReturn(customers);
-    RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+    RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+        "/users").accept(
+        MediaType.APPLICATION_JSON);
+    try {
+   
+    MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+    System.out.println(result.getResponse().getContentAsString());
+    String expected =  "[{\"customerId\":1,\"id\":\"1_KKD\",\"mobileNo\":\"Adam\",\"password\":\"123\",\"firstName\":\"1234\",\"lastName\":\"678\"}]";
+
+    JSONAssert.assertEquals(expected, result.getResponse()
+        .getContentAsString(), false);
+    
+    
+    }
+    catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+
+
+  }
+  
+  @Test
+  public void viwProductsTest(){
+    
+    customers.add(customer);
+    Mockito.when(
+        customerDaoService.findAll()).thenReturn(customers);
+    RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
         "/users").accept(
         MediaType.APPLICATION_JSON);
     try {
@@ -90,20 +111,15 @@ public class CustomerTest {
     
     MvcResult result = mockMvc.perform(requestBuilder).andReturn();
     System.out.println(result.getResponse().getContentAsString());
-    String expected =  "[{\"customerId\":1,\"id\":\"1_KKD\",\"mobileNo\":\"Adam\",\"password\":\"123\",\"firstName\":\"1234\",\"lastName\":\"678\"}]";
+    String expected =  "[{\"customerId\":1,\"id\":\"1_KD\",\"mobileNo\":\"Adam\",\"password\":\"123\",\"firstName\":\"1234\",\"lastName\":\"678\"}]";
 
-
-    // {"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
-
-    JSONAssert.assertEquals(expected, result.getResponse()
+    JSONAssert.assertNotEquals(expected, result.getResponse()
         .getContentAsString(), false);
-    
-    
-  }
+  
+    }
     catch (Exception e) {
       System.out.println(e.getMessage());
     }
-
 
   }
 }
